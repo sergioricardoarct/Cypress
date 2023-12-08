@@ -2,8 +2,12 @@
 
 
 describe('Introdução ao Cypress', () => {
+    beforeEach(() => {
+         cy.visit("https://www.google.com")})
+    
     it("Visistar uma pagina", () =>{
-        cy.visit("https://www.google.com")
-        cy.get('.FPdoLc > center > .RNmpXc').should("have.value",'Estou com sorte')
+        cy.get('.FPdoLc > center > .RNmpXc')
+        .should("have.value",'Estou com sorte')
     })
+               
 })
