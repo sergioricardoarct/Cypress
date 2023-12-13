@@ -19,8 +19,11 @@ import './commands'
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
 
+// erro encontrado - botão de submit não clicável, aqui gerar relatório de bug. 
+//Solução para continuar teste foi colocar em suport/2e2.js codido abaixo.
 Cypress.on('uncaught:exception', (err, runnable) => {
     // returning false here prevents Cypress from
     // failing the test
+    
     return false
   })

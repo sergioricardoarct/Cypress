@@ -2,10 +2,10 @@
 
 
 describe ('teste_Texto', () => {
-    before (() => {
+    beforeEach (() => {
          cy.visit("https://demo.guru99.com/telecom/index.html")})
     
-        it("Busca do Add Costumer", ()=>{
+        it. skip("Busca do Add Costumer", ()=>{
             cy.get('.inner > .left > :nth-child(1)')
             .should('contain','Add Customer')
             cy.get('.left > :nth-child(1) > h3 > a ')
@@ -16,7 +16,7 @@ describe ('teste_Texto', () => {
     
         describe('Teste_pagina_consumer',()=>{
             
-            it.only ("radio e cadastro", ()=>{
+            it ("radio e cadastro", ()=>{
                 cy.get('.inner > .left > :nth-child(1)')
                 .should('contain','Add Customer')
                 cy.get('.left > :nth-child(1) > h3 > a ')
@@ -33,15 +33,26 @@ describe ('teste_Texto', () => {
                 cy.get(':nth-child(7) > #message').type("Delta do Nilo Egito")                
                 cy.get('#telephoneno').type('1213212124')
                 
-                cy.wait(200)
-                cy.get('.actions > :nth-child(1) > input').type('{enter}')
+                                                                                     // erro encontrado - botão de submit não clicável, aqui gerar relatório de bug. 
+                                                                                    //Solução para continuar teste foi colocar em suport/2e2.js
+                cy.get('.actions > :nth-child(1) > input').click()
+                cy.get('tbody > :nth-child(1) > :nth-child(1) > b')
+                .should("be.visible")
+
+                cy.get('h3').invoke("text").then(($value) => { cy.log($value) })
+                
+            })
+
+            it ('Copiar e usar consumerID', ()=>{
+                cy.get('.left > :nth-child(2) > h3 > a').click()
+                cy.get('#customer_id'). type( cy.log($value) )
+                cy.get('h3').should("be.visible")
                 
                 
 
-                cy.get('tbody > :nth-child(1) > :nth-child(1) > b').should("be.visible")
-            
+
+            })
 
         })
     })
 
-}) 
