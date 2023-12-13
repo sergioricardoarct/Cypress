@@ -7,9 +7,10 @@ describe ('teste_Texto', () => {
     
         it. skip("Busca do Add Costumer", ()=>{
             cy.get('.inner > .left > :nth-child(1)')
-            .should('contain','Add Customer')
+                .should('contain','Add Customer')
             cy.get('.left > :nth-child(1) > h3 > a ')
-            .click()
+                .click()
+
             cy.get('h1').should("be.visible")
         })
         
@@ -18,37 +19,56 @@ describe ('teste_Texto', () => {
             
             it ("radio e cadastro", ()=>{
                 cy.get('.inner > .left > :nth-child(1)')
-                .should('contain','Add Customer')
+                    .should('contain','Add Customer')
                 cy.get('.left > :nth-child(1) > h3 > a ')
-                .click()
+                    .click()
+
                 cy.get('h1').should("be.visible")
 
                 ///radio///
-                cy.get(':nth-child(1) > label').click()
+                cy.get(':nth-child(1) > label')
+                    .click()
                 
                 ///campos de texto///
-                cy.get('#fname').type("Amenoth")
-                cy.get('#lname').type("Menous")
-                cy.get('#email'). type("Amonrah@ gmail.com")
-                cy.get(':nth-child(7) > #message').type("Delta do Nilo Egito")                
-                cy.get('#telephoneno').type('1213212124')
+                cy.get('#fname')
+                    .type("Amenoth")
+                cy.get('#lname')
+                    .type("Menous")
+                cy.get('#email')
+                    . type("Amonrah@ gmail.com")
+                cy.get(':nth-child(7) > #message')
+                    .type("Delta do Nilo Egito")                
+                cy.get('#telephoneno')
+                    .type('1213212124')
                 
                                                                                      // erro encontrado - botão de submit não clicável, aqui gerar relatório de bug. 
                                                                                     //Solução para continuar teste foi colocar em suport/2e2.js
-                cy.get('.actions > :nth-child(1) > input').click()
+                cy.get('.actions > :nth-child(1) > input')
+                    .click()
                 cy.get('tbody > :nth-child(1) > :nth-child(1) > b')
-                .should("be.visible")
+                    .should("be.visible")
 
-                cy.get('h3').invoke("text").then(($value) => { cy.log($value) })
+                cy.get('h3').invoke("text")
+                    .then(($el)=>{if($el != null){
+                        Cypress.env('consumerId',$el)
+                        cy.log(Cypress.env('consumerId'))
+                    }})
                 
             })
 
-            it ('Copiar e usar consumerID', ()=>{
-                cy.get('.left > :nth-child(2) > h3 > a').click()
-                cy.get('#customer_id'). type( cy.log($value) )
+            it('Copiar e usar consumerId', ()=>{
+                cy.get('.left > :nth-child(2) > h3 > a')
+                    .click()
+                cy.get('#customer_id')
+                    .type(Cypress.env('consumerId'))
+
+
                 cy.get('h3').should("be.visible")
                 
-                
+                cy.get('.fit')
+                    .click()
+
+                cy.get('font').should("be.visible")
 
 
             })
