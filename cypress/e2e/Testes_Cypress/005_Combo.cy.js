@@ -57,12 +57,11 @@ describe ('Teste_Orange', () => {
 
         cy.get('.oxd-grid-item > .oxd-input-group > :nth-child(2) > .oxd-input')
             .clear()
-            .type("002")
+            .type("001")
         
         cy.get('.oxd-button--secondary').click()
 
-        cy.get('.oxd-toast').should("be.visible")
-
+        cy.get('.oxd-toast').should('be.visible')
         })
             
     
