@@ -13,7 +13,7 @@ describe ('Teste_Orange', () => {
     }) 
 
     
-    it.only("Login", ()=>{
+    it("Login", ()=>{
 
         cy.get(':nth-child(2) > .oxd-input-group > :nth-child(2) > .oxd-input')
             .type('Admin')
@@ -24,7 +24,7 @@ describe ('Teste_Orange', () => {
         cy.get('.oxd-brand-banner > img').should("be.visible")
     }) 
 
-    it.only ("Clicar em pim", ()=>{
+    it("Clicar em pim", ()=>{
 
         cy.get(':nth-child(2) > .oxd-input-group > :nth-child(2) > .oxd-input')
             .type('Admin')
@@ -34,4 +34,36 @@ describe ('Teste_Orange', () => {
 
         cy.get(':nth-child(2) > .oxd-main-menu-item > .oxd-text').click()
     })
+    it.only('Cadastrar',()=>{
+        ///Login///
+        cy.get(':nth-child(2) > .oxd-input-group > :nth-child(2) > .oxd-input')
+            .type('Admin')
+        cy.get(':nth-child(3) > .oxd-input-group > :nth-child(2) > .oxd-input')
+            .type('admin123')
+        cy.get('.oxd-button').click()
+
+        cy.get('.oxd-brand-banner > img').should("be.visible")
+
+        ///Clicar no pim///
+         cy.get(':nth-child(2) > .oxd-main-menu-item > .oxd-text')
+         .click()
+
+        ///cadastro///
+        cy.get('.orangehrm-header-container > .oxd-button')
+        .click()
+        cy.get('.--name-grouped-field > :nth-child(1) > :nth-child(2) > .oxd-input').type("Amentep")
+        cy.get(':nth-child(2) > :nth-child(2) > .oxd-input').type("Hapinatra")
+        cy.get(':nth-child(3) > :nth-child(2) > .oxd-input').type("II")
+
+        cy.get('.oxd-grid-item > .oxd-input-group > :nth-child(2) > .oxd-input')
+            .clear()
+            .type("002")
+        
+        cy.get('.oxd-button--secondary').click()
+
+        cy.get('.oxd-toast').should("be.visible")
+
+        })
+            
+    
 })
