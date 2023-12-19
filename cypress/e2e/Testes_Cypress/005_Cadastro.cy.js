@@ -63,7 +63,7 @@ describe ('Teste_Orange', () => {
 
         cy.get('.orangehrm-horizontal-padding > .oxd-text'). should('contain','(1) Record Found')
 
-        /// delet
+        /// delete
 
         cy.get('.oxd-table-cell-actions > :nth-child(1) > .oxd-icon').click()
         cy.get('.oxd-button--label-danger').click()
