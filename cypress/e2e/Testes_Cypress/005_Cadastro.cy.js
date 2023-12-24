@@ -47,7 +47,7 @@ describe ('Teste_Orange', () => {
         cy.get(':nth-child(2) > :nth-child(2) > .oxd-input').type("Hapinatra")
         cy.get(':nth-child(3) > :nth-child(2) > .oxd-input').type("II")
 
-        let Idemployee = "0001"
+        let Idemployee = "0777"
         cy.get('.oxd-grid-item > .oxd-input-group > :nth-child(2) > .oxd-input')
         .click().clear().type(Idemployee)
         
@@ -69,5 +69,16 @@ describe ('Teste_Orange', () => {
         cy.get('.oxd-button--label-danger').click()
         cy.get('.oxd-toast').should('be.visible')
             
-    })      
+    }) 
+
+    it.only("time erro", ()=>{
+        cy.get(':nth-child(4) > .oxd-main-menu-item').should("be.visible")
+        cy.get(':nth-child(4) > .oxd-main-menu-item').click()
+        
+        cy.get('.oxd-autocomplete-text-input > input').type("Paul Collings")
+        cy.get('.oxd-form-actions > .oxd-button').click()
+        cy.get('.oxd-input-group > .oxd-text').should("be.visible")
+
+
+    })     
 })
