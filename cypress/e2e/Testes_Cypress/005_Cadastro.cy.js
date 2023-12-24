@@ -15,10 +15,10 @@ describe ('Teste_Orange', () => {
     
     it("Login", ()=>{
 
-        cy.get(':nth-child(2) > .oxd-input-group > :nth-child(2) > .oxd-input').type('Admin')
-        cy.get(':nth-child(3) > .oxd-input-group > :nth-child(2) > .oxd-input').type('admin123')
-        cy.get('.oxd-button').click()
-
+        //cy.get(':nth-child(2) > .oxd-input-group > :nth-child(2) > .oxd-input').type('Admin')
+        //cy.get(':nth-child(3) > .oxd-input-group > :nth-child(2) > .oxd-input').type('admin123')
+        //cy.get('.oxd-button').click()
+        cy.login()
         cy.get('.oxd-brand-banner > img').should("be.visible")
     }) 
 
@@ -30,7 +30,7 @@ describe ('Teste_Orange', () => {
 
         cy.get(':nth-child(2) > .oxd-main-menu-item > .oxd-text').click()
     })
-    it.only('Cadastrar',()=>{
+    it('Cadastrar',()=>{
         ///Login///
         cy.get(':nth-child(2) > .oxd-input-group > :nth-child(2) > .oxd-input').type('Admin')
         cy.get(':nth-child(3) > .oxd-input-group > :nth-child(2) > .oxd-input').type('admin123')
@@ -72,6 +72,7 @@ describe ('Teste_Orange', () => {
     }) 
 
     it.only("time erro", ()=>{
+        cy.login()
         cy.get(':nth-child(4) > .oxd-main-menu-item').should("be.visible")
         cy.get(':nth-child(4) > .oxd-main-menu-item').click()
         
