@@ -10,5 +10,7 @@ describe ('teste_Texto', () => {
             .select(["natacao", "Corrida"])            ///pesquisar o value
 
     })
-
+    it("não cadastrado", ()=>{
+        cy.get('#resultado').should('contain','Status: Nao cadastrado')
+    })
 })
