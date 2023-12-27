@@ -13,4 +13,7 @@ describe ('teste_Texto', () => {
     it("não cadastrado", ()=>{
         cy.get('#resultado').should('contain','Status: Nao cadastrado')
     })
+    it("não cadastrado", ()=>{
+        cy.get('#buttonPopUp').click()
+    })
 })
