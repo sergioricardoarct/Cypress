@@ -60,6 +60,8 @@ describe ("Testes_Funcionais",()=>{
             cy.get('[data-test="menu-home"] > .fas').click()
         })
 
+        /// Caso de teste 2 - Alterando uma conta ///
+
         it.only ("alter an account", ()=>{
 
             cy.get('[data-test="menu-settings"]').click()
