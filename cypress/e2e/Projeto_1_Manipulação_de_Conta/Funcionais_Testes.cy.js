@@ -1,14 +1,14 @@
 /// <reference types="cypress" />
-
+import loc from "../../support/locators"
 
 describe ("Testes_Funcionais",()=>{
 
     before(()=>{
         cy.visit('https://barrigareact.wcaquino.me')
 
-        cy.get('[data-test="email"]').type("RamisesMenotep@egt.com")
-        cy.get('[data-test="passwd"]').type ("Ameno123")  
-        cy.get('.btn').click()
+        cy.get(loc.LOGIN.USER).type("RamisesMenotep@egt.com")
+        cy.get(loc.LOGIN.PASSWORD).type ("Ameno123")  
+        cy.get(loc.LOGIN.BTN_LOGIN).click()
         
         cy.get('.toast-message').should("contain", "Bem vindo")
     })
@@ -20,9 +20,9 @@ describe ("Testes_Funcionais",()=>{
 
         it("No login, no user registered", ()=>{
 
-            cy.get('[data-test="email"]').type("RamisesMenotep@egt.com")
-            cy.get('[data-test="passwd"]').type ("Ameno123")  
-            cy.get('.btn').click()
+            cy.get(loc.LOGIN.USER).type("RamisesMenotep@egt.com")
+            cy.get(loc.LOGIN.PASSWORD).type ("Ameno123")  
+            cy.get(loc.LOGIN.BTN_LOGIN).click()
             
             cy.get('.toast-message').should("contain", "Erro")
         })
