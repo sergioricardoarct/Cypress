@@ -29,20 +29,20 @@ describe ("Testes_Funcionais",()=>{
 
         it("register", ()=>{
 
-            cy.get(':nth-child(2) > .nav-link').click()
-            cy.get('.jumbotron > :nth-child(1) > .form-control').type("Ramises Menotep VI")
-            cy.get('.input-group > .form-control').type("RamisesMenotep@egt.com")
-            cy.get(':nth-child(3) > .form-control').type ("Ameno123")  
-            cy.get('.btn').click()
+            cy.get(loc.REGISTRO.BTN_REGISTRO).click()
+            cy.get(loc.REGISTRO.USER_NAME).type("Ramises Menotep VI")
+            cy.get(loc.REGISTRO.USER_EMAIL).type("RamisesMenotep@egt.com")
+            cy.get(loc.REGISTRO.PASSWORD).type ("Ameno123")  
+            cy.get(loc.REGISTRO.BTN_SAVE_REGISTRO).click()
             
             cy.get('.toast-message').should("be.visible")
         })
         
         it("login, valid", ()=>{
 
-            cy.get('[data-test="email"]').type("RamisesMenotep@egt.com")
-            cy.get('[data-test="passwd"]').type ("Ameno123")  
-            cy.get('.btn').click()
+            cy.get(loc.LOGIN.USER).type("RamisesMenotep@egt.com")
+            cy.get(loc.LOGIN.PASSWORD).type ("Ameno123")  
+            cy.get(log.LOGIN.BTN_LOGIN).click()
             
             cy.get('.toast-message').should("contain", "Bem vindo")
         })
