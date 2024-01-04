@@ -42,7 +42,7 @@ describe ("Testes_Funcionais",()=>{
 
             cy.get(loc.LOGIN.USER).type("RamisesMenotep@egt.com")
             cy.get(loc.LOGIN.PASSWORD).type ("Ameno123")  
-            cy.get(log.LOGIN.BTN_LOGIN).click()
+            cy.get(loc.LOGIN.BTN_LOGIN).click()
             
             cy.get('.toast-message').should("contain", "Bem vindo")
         })
