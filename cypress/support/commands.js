@@ -30,3 +30,19 @@ Cypress.Commands.add ("login", ()=>{
     cy.get('.oxd-button').click()
 
 })
+/// PROJETO "1" ////
+
+import loc from './locators'
+Cypress.Commands.add ("login_projeto", (user,password)=>{
+    cy.visit('https://barrigareact.wcaquino.me')
+
+        cy.get(loc.LOGIN.USER).type("RamisesMenotep@egt.com")
+        cy.get(loc.LOGIN.PASSWORD).type ("Ameno123")  
+        cy.get(loc.LOGIN.BTN_LOGIN).click()
+
+})
+
+Cypress.Commands.add ("reset_conta", ()=>{
+    cy.get(loc.SETTINGS.BTN_SETTINGS).click()
+    cy.get(loc.SETTINGS.BTN_RESET).click()
+})

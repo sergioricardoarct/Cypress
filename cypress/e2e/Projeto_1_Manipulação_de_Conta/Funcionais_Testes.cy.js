@@ -1,107 +1,105 @@
 /// <reference types="cypress" />
 import loc from "../../support/locators"
 
-describe ("Testes_Funcionais",()=>{
+describe("Testes_Funcionais",()=>{
 
-    before(()=>{
-        cy.visit('https://barrigareact.wcaquino.me')
+    beforeEach(()=>{
+       cy.login_projeto ("RamisesMenotep@egt.com" ,"Ameno123")
+       cy.reset_conta()
+       
+        //cy.visit('https://barrigareact.wcaquino.me')
 
-        cy.get(loc.LOGIN.USER).type("RamisesMenotep@egt.com")
-        cy.get(loc.LOGIN.PASSWORD).type ("Ameno123")  
-        cy.get(loc.LOGIN.BTN_LOGIN).click()
+       // cy.get(loc.LOGIN.USER).type("RamisesMenotep@egt.com")
+       // cy.get(loc.LOGIN.PASSWORD).type ("Ameno123")  
+       // cy.get(loc.LOGIN.BTN_LOGIN).click()
         
-        cy.get('.toast-message').should("contain", "Bem vindo")
-    })
-    
-        it("Page loaded", ()=>{cy.get('img').should("be.visible")})
-        
+       // cy.get(loc.MENSAGEM).should("contain", "Bem vindo")
+    })     
         
         /// Login e Usuario Pre cadastrado - Pre condiçoes ///
-
-        it("No login, no user registered", ()=>{
-
-            cy.get(loc.LOGIN.USER).type("RamisesMenotep@egt.com")
-            cy.get(loc.LOGIN.PASSWORD).type ("Ameno123")  
-            cy.get(loc.LOGIN.BTN_LOGIN).click()
-            
-            cy.get('.toast-message').should("contain", "Erro")
-        })
-
-        it("register", ()=>{
-
-            cy.get(loc.REGISTRO.BTN_REGISTRO).click()
-            cy.get(loc.REGISTRO.USER_NAME).type("Ramises Menotep VI")
-            cy.get(loc.REGISTRO.USER_EMAIL).type("RamisesMenotep@egt.com")
-            cy.get(loc.REGISTRO.PASSWORD).type ("Ameno123")  
-            cy.get(loc.REGISTRO.BTN_SAVE_REGISTRO).click()
-            
-            cy.get('.toast-message').should("be.visible")
-        })
         
         it("login, valid", ()=>{
-
-            cy.get(loc.LOGIN.USER).type("RamisesMenotep@egt.com")
-            cy.get(loc.LOGIN.PASSWORD).type ("Ameno123")  
-            cy.get(loc.LOGIN.BTN_LOGIN).click()
-            
-            cy.get('.toast-message').should("contain", "Bem vindo")
+            cy.get(loc.SETTINGS.BTN_HOME).should('be.visible')
         })
 
         /// Caso de teste 1 - Inserir uma conta ///
     
         it("Creat an account", ()=>{
 
-            cy.get('[data-test="menu-settings"]').click()
-            cy.get('[href="/contas"]').click()
-            cy.get('[data-test="nome"]'). type("Construction of Dad's Primanede")
-            cy.get('.btn').click()
+            //cy.get(loc.SETTINGS.BTN_SETTINGS).click()
+            //cy.get(loc.SETTINGS.BTN_RESET).click()
+            cy.reset_conta()
+            cy.get(loc.SETTINGS.BTN_SETTINGS).click()
+            cy.get(loc.SETTINGS.BTN_CONTA).click()
+            cy.get(loc.MENU_CONTA.CONTA). type("Construction of Dad's Primanede")
+            cy.get(loc.MENU_CONTA.BTN_CONTA).click()
 
-            cy.get('.toast-success > .toast-message').should("contain", "Conta inserida com sucesso!")
+            cy.get(loc.MENSAGEM.MENSAGEM_SUC).should("contain", "Conta inserida com sucesso!")
             cy.get('[data-test="menu-home"] > .fas').click()
         })
 
         /// Caso de teste 2 - Alterando uma conta ///
 
-        it.only ("alter an account", ()=>{
+        it("alter an account", ()=>{
 
-            cy.get('[data-test="menu-settings"]').click()
-            cy.get('[href="/reset"]').click()
-            cy.get('[data-test="menu-settings"]').click()
-            cy.get('[href="/contas"]').click()
-            cy.get('[data-test="nome"]'). type("Construction of Dad's Primanede")
-            cy.get('.btn').click()
-            cy.get(':nth-child(7) > :nth-child(2) > :nth-child(1) > .far').click()
-            cy.get('[data-test="nome"]').clear()
-            cy.get('[data-test="nome"]').type("Construction of Dad's Primanede 1")
-            cy.get('.btn').click()
+            cy.reset_conta()
+            cy.get(loc.SETTINGS.BTN_SETTINGS).click()
+            cy.get(loc.SETTINGS.BTN_CONTA).click()
+            cy.get(loc.MENU_CONTA.CONTA). type("The Construction of Dad's Primanede")
+            cy.get(loc.MENU_CONTA.BTN_CONTA).click()
+            cy.get(loc.MENU_CONTA.VALOR_EDIT).click()
+            cy.get(loc.MENU_CONTA.CONTA).clear()
+            cy.get(loc.MENU_CONTA.CONTA).type("The Construction of Dad's Primanede 1")
+            cy.get(loc.MENU_CONTA.BTN_SAVE_CONTA).click()
 
-            cy.get('.toast-success > .toast-message').should("contain", "Conta atualizada com sucesso!")
-            cy.get(':nth-child(7) > :nth-child(1)').should("contain","Construction of Dad's Primanede 1")
-           
+            cy.get(loc.MENSAGEM.MENSAGEM_SUC).should("contain", "Conta atualizada com sucesso!")
+            cy.get(':nth-child(7) > :nth-child(1)').should("contain","Construction of Dad's Primanede 1")         
+    })
+})
+
+describe("teste de login sem acesso", ()=>{
+
+
+    before(()=>{cy.visit('https://barrigareact.wcaquino.me')})
+
+        it.skip("register", ()=>{
+
+            cy.get(loc.REGISTRO.BTN_REGISTRO).click()
+            cy.get(loc.REGISTRO.USER_NAME).type("Ramises Menotep VI")
+            cy.get(loc.REGISTRO.USER_EMAIL).type("RamisesMenotepI@egt.com")
+            cy.get(loc.REGISTRO.PASSWORD).type ("Ameno123")  
+            cy.get(loc.REGISTRO.BTN_SAVE_REGISTRO).click()
+            
+            cy.get(loc.MENSAGEM).should("be.visible")
         })
 
+        it("No login, no user registered", ()=>{
 
-       
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            cy.get(loc.LOGIN.USER).type("RamisesMenotepa@egt.com")
+            cy.get(loc.LOGIN.PASSWORD).type ("Ameno123")  
+            cy.get(loc.LOGIN.BTN_LOGIN).click()
+            
+            cy.get(loc.MENSAGEM.MENSAGEM_ERRO).should("contain", "Erro:")
+        })
 })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
