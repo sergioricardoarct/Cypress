@@ -1,5 +1,6 @@
 /// <reference types="cypress" />
 import loc from "../../support/locators"
+import "../.././support/commands_Contas"
 
 describe("Testes_Funcionais",()=>{
 
@@ -29,8 +30,9 @@ describe("Testes_Funcionais",()=>{
             //cy.get(loc.SETTINGS.BTN_SETTINGS).click()
             //cy.get(loc.SETTINGS.BTN_RESET).click()
             cy.reset_conta()
-            cy.get(loc.SETTINGS.BTN_SETTINGS).click()
-            cy.get(loc.SETTINGS.BTN_CONTA).click()
+            cy.acessar_contas()
+            //cy.get(loc.SETTINGS.BTN_SETTINGS).click()
+            //cy.get(loc.SETTINGS.BTN_CONTA).click()
             cy.get(loc.MENU_CONTA.CONTA). type("Construction of Dad's Primanede")
             cy.get(loc.MENU_CONTA.BTN_CONTA).click()
 
@@ -40,11 +42,13 @@ describe("Testes_Funcionais",()=>{
 
         /// Caso de teste 2 - Alterando uma conta ///
 
-        it("alter an account", ()=>{
+        it.only("alter an account", ()=>{
 
             cy.reset_conta()
-            cy.get(loc.SETTINGS.BTN_SETTINGS).click()
-            cy.get(loc.SETTINGS.BTN_CONTA).click()
+            //cy.get(loc.SETTINGS.BTN_SETTINGS).click()
+            //cy.get(loc.SETTINGS.BTN_CONTA).click()
+            cy.acessar_contas()
+
             cy.get(loc.MENU_CONTA.CONTA). type("The Construction of Dad's Primanede")
             cy.get(loc.MENU_CONTA.BTN_CONTA).click()
             cy.get(loc.MENU_CONTA.VALOR_EDIT).click()
