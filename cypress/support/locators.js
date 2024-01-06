@@ -22,8 +22,9 @@ const locators = {
     MENU_CONTA:{
        CONTA:'[data-test="nome"]',
        BTN_CONTA:'.btn',
-       VALOR_EDIT:':nth-child(1) > :nth-child(2) > :nth-child(1) > .far',
+       VALOR_EDIT:"// table //tr // td [contains(text(),'The')] /..// i[@class='far fa-edit']",
        BTN_SAVE_CONTA:'.btn',
+       INSERT_CONTA:'// table //tr // td [contains(text(),"The")] '
     },
 
     MENSAGEM:{ 

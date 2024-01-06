@@ -1,6 +1,7 @@
 /// <reference types="cypress" />
 import loc from "../../support/locators"
 import "../.././support/commands_Contas"
+require ('cypress-xpath')
 
 describe("Testes_Funcionais",()=>{
 
@@ -51,7 +52,9 @@ describe("Testes_Funcionais",()=>{
 
             cy.get(loc.MENU_CONTA.CONTA). type("The Construction of Dad's Primanede")
             cy.get(loc.MENU_CONTA.BTN_CONTA).click()
-            cy.get(loc.MENU_CONTA.VALOR_EDIT).click()
+            
+            cy.xpath(loc.MENU_CONTA.INSERT_CONTA).click()
+            cy.xpath(loc.MENU_CONTA.VALOR_EDIT).click()
             cy.get(loc.MENU_CONTA.CONTA).clear()
             cy.get(loc.MENU_CONTA.CONTA).type("The Construction of Dad's Primanede 1")
             cy.get(loc.MENU_CONTA.BTN_SAVE_CONTA).click()
