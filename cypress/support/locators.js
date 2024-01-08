@@ -31,8 +31,21 @@ const locators = {
         MENSAGEN:'.toast-message',
         MENSAGEM_SUC:'.toast-success > .toast-message',
         MENSAGEM_ERRO:'.toast',
-    }
+    },
 
+    MENU_MOVIMENTAÇÃO:{
+        BTN_MOVIMENTAÇÃO:'[data-test="menu-movimentacao"] > .fas',
+        BTN_RECEITA:'[data-test="tipo-receita"]',
+        BTN_DESPESA:'[data-test="tipo-despesa"]',
+        DTA_TRANSACAO:'[data-test="data-transacao"]',
+        DTA_PAGAMENTO:'[data-test="data-pagamento"]',
+        DESCRICAO:'[data-test="descricao"]',
+        ENVOLVIDO:'[data-test="envolvido"]',
+        VALOR_MOVI:'[data-test="valor"]',
+        CONTA_MOVI:'[data-test="conta"]',
+        ESTATUS:'[data-test="status"]',
+        BTN_SAVE_MOVI:'.btn-primary'
+    }
 }
 
 export default locators

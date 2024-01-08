@@ -11,7 +11,7 @@ describe("Testes_Funcionais",()=>{
 
     beforeEach(()=>{
        cy.login_projeto ("RamisesMenotep@egt.com" ,"Ameno123")
-       cy.reset_conta()
+       
     })     
         
 /// Login e Usuario Pre cadastrado - Pre condiçoes ///
@@ -34,7 +34,7 @@ describe("Testes_Funcionais",()=>{
 
 /// Caso de teste 2 - Alterando uma conta ///
 
-        it.only("alter an account", ()=>{
+        it("alter an account", ()=>{
 
             cy.reset_conta()
             cy.acessar_contas()
@@ -44,6 +44,26 @@ describe("Testes_Funcionais",()=>{
             cy.get(loc.MENSAGEM.MENSAGEM_SUC).should("contain", "Conta atualizada com sucesso!")
             cy.xpath(loc.MENU_CONTA.INSERT_CONTA).should("contain","Construction of Dad's Primanede 1")         
     })
+
+/// Caso de teste 3 - Tentar criar uma conta repetida ///
+
+        it("Conta Repetida", ()=>{
+            cy.acessar_contas()
+            cy.add_conta()
+            cy.add_conta()
+            cy.get(loc.MENSAGEM.MENSAGEM_ERRO).should("contain", "Erro:")
+        })
+
+///Caso de teste 4 - Inserir Movientação ///
+
+        it.only("Inserir Movientação", ()=>{
+            cy.get(loc.MENU_MOVIMENTAÇÃO.BTN_MOVIMENTAÇÃO).click()
+            cy.get(loc.MENU_MOVIMENTAÇÃO.DESCRICAO). type('')
+
+            
+        })
+
+
 })
 
 describe("teste de login sem acesso", ()=>{
