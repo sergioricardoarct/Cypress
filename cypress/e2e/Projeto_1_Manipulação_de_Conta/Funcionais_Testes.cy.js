@@ -48,8 +48,11 @@ describe("Testes_Funcionais",()=>{
 /// Caso de teste 3 - Tentar criar uma conta repetida ///
 
         it("Conta Repetida", ()=>{
+            cy.reset_conta()
             cy.acessar_contas()
             cy.add_conta()
+            cy.xpath(loc.MENU_CONTA.INSERT_CONTA).should('be.visible')
+
             cy.add_conta()
             cy.get(loc.MENSAGEM.MENSAGEM_ERRO).should("contain", "Erro:")
         })
@@ -57,9 +60,20 @@ describe("Testes_Funcionais",()=>{
 ///Caso de teste 4 - Inserir Movientação ///
 
         it.only("Inserir Movientação", ()=>{
-            cy.get(loc.MENU_MOVIMENTAÇÃO.BTN_MOVIMENTAÇÃO).click()
-            cy.get(loc.MENU_MOVIMENTAÇÃO.DESCRICAO). type('')
 
+            cy.reset_conta()
+            cy.acessar_contas()
+            cy.add_conta()
+            cy.get(loc.MENU_MOVIMENTAÇÃO.BTN_MOVIMENTAÇÃO).click()
+            cy.get(loc.MENU_MOVIMENTAÇÃO.DESCRICAO). type('Investimento do Faraó')
+            cy.get(loc.MENU_MOVIMENTAÇÃO.CONTA_MOVI).select(["The Construction of Dad's Primanede"])
+            cy.get(loc.MENU_MOVIMENTAÇÃO.VALOR_MOVI). type('1200')
+            cy.get(loc.MENU_MOVIMENTAÇÃO.ENVOLVIDO). type('Tutacamon IV')
+            cy.get(loc.MENU_MOVIMENTAÇÃO.BTN_RECEITA). click()
+            cy.get(loc.MENU_MOVIMENTAÇÃO.BTN_SAVE_MOVI).click()
+
+            cy.get(loc.MENSAGEM.MENSAGEM_SUC).should("be.visible")
+            cy.xpath('//  div [ @class ="list-group"] // li //span [contains(text(),"Investimento do Faraó")]').should('be.visible')
             
         })
 

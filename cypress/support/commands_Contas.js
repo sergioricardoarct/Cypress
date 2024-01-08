@@ -9,6 +9,7 @@ Cypress.Commands.add ("acessar_contas", ()=>{
 Cypress.Commands.add ("add_conta", ()=>{
     cy.get(loc.MENU_CONTA.CONTA).type("The Construction of Dad's Primanede")
     cy.get(loc.MENU_CONTA.BTN_CONTA).click()
+   
 })
 Cypress.Commands.add ("auter_conta", ()=>{
     cy.xpath(loc.MENU_CONTA.INSERT_CONTA).click()
