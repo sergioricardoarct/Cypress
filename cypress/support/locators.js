@@ -24,7 +24,7 @@ const locators = {
        BTN_CONTA:'.btn',
        VALOR_EDIT:"// table //tr // td [contains(text(),'The')] /..// i[@class='far fa-edit']",
        BTN_SAVE_CONTA:'.btn',
-       INSERT_CONTA:'// table //tr // td [contains(text(),"The")] '
+       INSERT_CONTA:'// table //tr // td [contains(text(),"Primanede")] '
     },
 
     MENSAGEM:{ 
