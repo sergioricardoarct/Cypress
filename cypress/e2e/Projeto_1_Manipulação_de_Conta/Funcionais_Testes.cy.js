@@ -18,13 +18,13 @@ describe("Testes_Funcionais",()=>{
         
 /// Login e Usuario Pre cadastrado - Pre condiçoes ///
 
-        it.skip("register", ()=>{cy.registro()})        
+        it.skip("Register", ()=>{cy.registro()})        
         it("login, valid", ()=>{cy.login_valido()})
 
 
 /// Caso de teste 1 - Inserir uma conta ///
     
-        it("Creat an account", ()=>{
+        it("CRicar uma conta", ()=>{
 
             cy.reset_conta()
             cy.acessar_contas()
@@ -36,7 +36,7 @@ describe("Testes_Funcionais",()=>{
 
 /// Caso de teste 2 - Alterando uma conta ///
 
-        it("alter an account", ()=>{
+        it("Alteração de conta", ()=>{
 
             cy.reset_conta()
             cy.acessar_contas()
@@ -49,7 +49,7 @@ describe("Testes_Funcionais",()=>{
 
 /// Caso de teste 3 - Tentar criar uma conta repetida ///
 
-        it("Conta Repetida", ()=>{
+        it("Repetir conta", ()=>{
 
             cy.reset_conta()
             cy.acessar_contas()
@@ -74,6 +74,13 @@ describe("Testes_Funcionais",()=>{
             
         })
 
+        it.only("Saldo", ()=>{
+
+           cy.get(loc.SETTINGS.BTN_HOME).click()
+           cy.xpath(loc.SALDO.FS_XP_SALDO_VALOR('Construction')).should('contain.text', '1.200,00')
+            
+        })
+
 
 })
 
@@ -82,7 +89,7 @@ describe("teste de login sem acesso", ()=>{
 
     before(()=>{cy.visit('https://barrigareact.wcaquino.me')})
 
-        it("No login, no user registered", ()=>{
+        it("Login, sem usuário cadastrado", ()=>{
 
             cy.login_projeto ("RamisesMenotepa@egt.com" ,"Ameno123")                       
             cy.get(loc.MENSAGEM.MENSAGEM_ERRO).should("contain", "Erro:")
