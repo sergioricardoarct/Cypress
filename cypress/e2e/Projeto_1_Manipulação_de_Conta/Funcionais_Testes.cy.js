@@ -3,6 +3,8 @@
 import loc from "../../support/locators"
 import "../.././support/commands_Contas"
 import "../.././support/commands_Registro"
+import "../.././support/commands_Movimentação"
+
 require ('cypress-xpath')
 
 
@@ -29,7 +31,7 @@ describe("Testes_Funcionais",()=>{
             cy.add_conta()
 
             cy.get(loc.MENSAGEM.MENSAGEM_SUC).should("contain", "Conta inserida com sucesso!")
-            cy.get('[data-test="menu-home"] > .fas').click()
+            cy.get(loc.SETTINGS.BTN_HOME).click()
         })
 
 /// Caso de teste 2 - Alterando uma conta ///
@@ -48,6 +50,7 @@ describe("Testes_Funcionais",()=>{
 /// Caso de teste 3 - Tentar criar uma conta repetida ///
 
         it("Conta Repetida", ()=>{
+
             cy.reset_conta()
             cy.acessar_contas()
             cy.add_conta()
@@ -59,21 +62,15 @@ describe("Testes_Funcionais",()=>{
 
 ///Caso de teste 4 - Inserir Movientação ///
 
-        it.only("Inserir Movientação", ()=>{
+        it("Inserir Movientação", ()=>{
 
             cy.reset_conta()
             cy.acessar_contas()
             cy.add_conta()
-            cy.get(loc.MENU_MOVIMENTAÇÃO.BTN_MOVIMENTAÇÃO).click()
-            cy.get(loc.MENU_MOVIMENTAÇÃO.DESCRICAO). type('Investimento do Faraó')
-            cy.get(loc.MENU_MOVIMENTAÇÃO.CONTA_MOVI).select(["The Construction of Dad's Primanede"])
-            cy.get(loc.MENU_MOVIMENTAÇÃO.VALOR_MOVI). type('1200')
-            cy.get(loc.MENU_MOVIMENTAÇÃO.ENVOLVIDO). type('Tutacamon IV')
-            cy.get(loc.MENU_MOVIMENTAÇÃO.BTN_RECEITA). click()
-            cy.get(loc.MENU_MOVIMENTAÇÃO.BTN_SAVE_MOVI).click()
+            cy.movimentar_conta()
 
             cy.get(loc.MENSAGEM.MENSAGEM_SUC).should("be.visible")
-            cy.xpath('//  div [ @class ="list-group"] // li //span [contains(text(),"Investimento do Faraó")]').should('be.visible')
+            cy.xpath(loc.MENU_MOVIMENTAÇÃO.VALIDACAO_MOVI).should('be.visible')
             
         })
 

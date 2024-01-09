@@ -44,7 +44,8 @@ const locators = {
         VALOR_MOVI:'[data-test="valor"]',
         CONTA_MOVI:'[data-test="conta"]',
         ESTATUS:'[data-test="status"]',
-        BTN_SAVE_MOVI:'.btn-primary'
+        BTN_SAVE_MOVI:'.btn-primary',
+        VALIDACAO_MOVI:'//  div [ @class ="list-group"] // li //span [contains(text(),"Investimento do Faraó")]',
     }
 }
 
