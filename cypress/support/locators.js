@@ -46,9 +46,13 @@ const locators = {
         ESTATUS:'[data-test="status"]',
         BTN_SAVE_MOVI:'.btn-primary',
         VALIDACAO_MOVI:'//  div [ @class ="list-group"] // li //span [contains(text(),"Investimento do Faraó")]',
-    },
+    }, 
     SALDO:{
         FS_XP_SALDO_VALOR: nome =>`//table//tr//td [contains(text(),"${nome}")] //.. /td[2]`
+    },
+    EXTRATO:{
+        MENU_EXTRATO:"cy.get('[data-test='menu-extrato'] > .fas')",
+        EXCULIR:"// li //span [contains(text(),'Faraó')]//.././../..//a/./i[@class='far fa-trash-alt']"   
     },
 }
 

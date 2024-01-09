@@ -74,13 +74,29 @@ describe("Testes_Funcionais",()=>{
             
         })
 
-        it.only("Saldo", ()=>{
+
+///Caso de teste 5 - Saldo da Movientação /// 
+
+        it("Saldo", ()=>{
 
            cy.get(loc.SETTINGS.BTN_HOME).click()
            cy.xpath(loc.SALDO.FS_XP_SALDO_VALOR('Construction')).should('contain.text', '1.200,00')
             
         })
 
+///Caso de teste 6 - Deletar Movimentação /// 
+
+        it.only("Remover Movimentação", ()=>{
+
+            cy.reset_conta()
+            cy.acessar_contas()
+            cy.add_conta()
+            cy.movimentar_conta()
+
+            cy.xpath(loc.EXTRATO.EXCULIR).click()
+            cy.get(loc.MENSAGEM.MENSAGEM_SUC).should('be.visible')
+            
+        })
 
 })
 
