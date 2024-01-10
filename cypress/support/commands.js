@@ -46,3 +46,13 @@ Cypress.Commands.add ("reset_conta", ()=>{
     cy.get(loc.SETTINGS.BTN_SETTINGS).click()
     cy.get(loc.SETTINGS.BTN_RESET).click()
 })
+
+Cypress.Commands.add ("login_projeto_Erro", (user,password)=>{
+    cy.visit('https://barrigareact.wcaquino.me')
+
+    cy.get(loc.LOGIN.USER).type("RamisesMenotepa@egt.com")   
+    cy.get(loc.LOGIN.PASSWORD).type('Ameno123') 
+    cy.get(loc.LOGIN.BTN_LOGIN).click()                  
+    cy.get(loc.MENSAGEM.MENSAGEM_ERRO).should("contain", "Erro:")
+
+})

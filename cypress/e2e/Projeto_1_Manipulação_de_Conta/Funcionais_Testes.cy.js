@@ -24,7 +24,7 @@ describe("Testes_Funcionais",()=>{
 
 /// Caso de teste 1 - Inserir uma conta ///
     
-        it("CRicar uma conta", ()=>{
+        it("Cricar uma conta", ()=>{
 
             cy.reset_conta()
             cy.acessar_contas()
@@ -86,7 +86,7 @@ describe("Testes_Funcionais",()=>{
 
 ///Caso de teste 6 - Deletar Movimentação /// 
 
-        it.only("Remover Movimentação", ()=>{
+        it("Remover Movimentação", ()=>{
 
             cy.reset_conta()
             cy.acessar_contas()
@@ -100,15 +100,11 @@ describe("Testes_Funcionais",()=>{
 
 })
 
-describe("teste de login sem acesso", ()=>{
-
-
-    before(()=>{cy.visit('https://barrigareact.wcaquino.me')})
+describe("Teste de login sem acesso", ()=>{
 
         it("Login, sem usuário cadastrado", ()=>{
 
-            cy.login_projeto ("RamisesMenotepa@egt.com" ,"Ameno123")                       
-            cy.get(loc.MENSAGEM.MENSAGEM_ERRO).should("contain", "Erro:")
+           cy.login_projeto_Erro()
         })
 })
 
