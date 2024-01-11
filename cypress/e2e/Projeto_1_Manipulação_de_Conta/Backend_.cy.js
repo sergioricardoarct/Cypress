@@ -4,8 +4,8 @@ describe("Testes_API",()=>{
 
       
         
-/// Login e Usuario Pre cadastrado - Pre condiçoes ///
-        it("Login", ()=>{
+// Caso de teste 1 - Inserir uma conta ///
+        it("Criar conta", ()=>{
         cy.request({
                 method: 'POST',
                 url:'https://barrigarest.wcaquino.me/signin',
@@ -37,12 +37,8 @@ describe("Testes_API",()=>{
         })
         
 
-/// Caso de teste 1 - Inserir uma conta ///
-    
-        it("Cricar uma conta", ()=>{
-                
+/
 
-        })
 
 /// Caso de teste 2 - Alterando uma conta ///
 
