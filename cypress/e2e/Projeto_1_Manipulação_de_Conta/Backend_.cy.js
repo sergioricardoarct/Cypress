@@ -1,11 +1,11 @@
 /// <reference types="cypress" />
 
-describe("Testes_Funcionais",()=>{
+describe("Testes_API",()=>{
 
       
         
 /// Login e Usuario Pre cadastrado - Pre condiçoes ///
-        it.only("Cricar uma conta", ()=>{
+        it("Login", ()=>{
         cy.request({
                 method: 'POST',
                 url:'https://barrigarest.wcaquino.me/signin',
@@ -15,12 +15,27 @@ describe("Testes_Funcionais",()=>{
                         senha:"Ameno123"
                 }
                        
-                }).then(res => console.log(res) ).its('body.token').should('not.be.empty')
+                })
+                .then(res => console.log(res) ).its('body.token').should('not.be.empty')
+                .then(token => {
+                        cy.request(
+                                {Method:'POST',
+                                url:'https://barrigarest.wcaquino.me/contas',
+                                headers:{Authorization: `JWT ${token}`},       //// aqui é crase///
+                                body:{nome:'Conta via Post'},
+                                },
+                        )
+                        .then(res=>console.log(res))
+                })
         })
+        
 
 /// Caso de teste 1 - Inserir uma conta ///
     
-        it("Cricar uma conta", ()=>{})
+        it("Cricar uma conta", ()=>{
+                
+
+        })
 
 /// Caso de teste 2 - Alterando uma conta ///
 
