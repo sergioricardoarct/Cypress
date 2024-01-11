@@ -19,13 +19,20 @@ describe("Testes_API",()=>{
                 .then(res => console.log(res) ).its('body.token').should('not.be.empty')
                 .then(token => {
                         cy.request(
-                                {Method:'POST',
+                                {method:'POST',
                                 url:'https://barrigarest.wcaquino.me/contas',
                                 headers:{Authorization: `JWT ${token}`},       //// aqui é crase///
                                 body:{nome:'Conta via Post'},
                                 },
                         )
                         .then(res=>console.log(res))
+                        .as("response")
+                })
+
+                cy.get("@response").then(resp=>{
+                        expect(resp.status).to.be.equal(201)
+                        expect(resp.body).to.be.have.property('id')
+                        expect(resp.body).to.be.have.property('nome','Conta via Post')
                 })
         })
         
