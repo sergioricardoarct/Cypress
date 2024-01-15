@@ -56,3 +56,14 @@ Cypress.Commands.add ("login_projeto_Erro", (user,password)=>{
     cy.get(loc.MENSAGEM.MENSAGEM_ERRO).should("contain", "Erro:")
 
 })
+Cypress.Commands.add("GetToken", (user, password)=>{
+    cy.request({
+        method: 'POST',
+        url:'https://barrigarest.wcaquino.me/signin',
+        body:{
+                email:user,
+                redirecionar: false,
+                senha:password
+        }
+    }).its("body.token").should("not.be.empty").then(token =>{return token} )
+})
