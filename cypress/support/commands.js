@@ -63,7 +63,7 @@ Cypress.Commands.add("GetToken", (user, password)=>{
         body:{
                 email:user,
                 redirecionar: false,
-                senha:password
+                senha:password,
         }
     }).its("body.token").should("not.be.empty").then(token =>{return token} )
 })
