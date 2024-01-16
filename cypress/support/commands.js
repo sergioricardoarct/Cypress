@@ -67,3 +67,15 @@ Cypress.Commands.add("GetToken", (user, password)=>{
         }
     }).its("body.token").should("not.be.empty").then(token =>{return token} )
 })
+
+Cypress.Commands.add("ResetGet", ()=>{
+    cy.GetToken('RamisesMenotep@egt.com','Ameno123').then(token =>{
+        cy.request(
+            {
+                method:"get",
+                url:"https://barrigarest.wcaquino.me/reset",
+headers:{Authorization: `JWT ${token}`},
+            })
+    })
+
+})

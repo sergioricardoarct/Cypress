@@ -6,7 +6,10 @@ describe("Testes_API",()=>{
                 cy.GetToken('RamisesMenotep@egt.com','Ameno123')
                 .then(tkn => {token = tkn})
         })
+        
+        beforeEach(()=>{ cy.ResetGet()})
 
+        
 /// Caso de teste 1 - Inserir uma conta ///
         it("Criar conta", ()=>{
                 cy.request(
