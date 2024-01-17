@@ -34,7 +34,26 @@ describe("Testes_API",()=>{
 
 /// Caso de teste 2 - Alterando uma conta ///
 
-        it("Alteração de conta", ()=>{ })         
+        it.only("Alteração de conta", ()=>{
+                cy.request({
+                        url:'https://barrigarest.wcaquino.me/contas',
+                        method:'GET',
+                        headers:{Authorization: `JWT ${token}`},
+                        qs:{
+                                nome:'Conta para alterar',
+                        }
+                }) .then(res=>console.log(res)) .then(res=>
+                        cy.request({
+                        url:`https://barrigarest.wcaquino.me/contas/${res,body[0],id}`,
+                        method:"PUT",
+                        headers:{Authorization: `JWT ${token}`},
+                        body:{nome:"Conta alterada via rest" },
+                })).as("response")
+                        
+                
+                cy.get("@response").its("status").should("be.equal",200 )           
+                })
+         })         
     
 /// Caso de teste 3 - Tentar criar uma conta repetida ///
 
@@ -51,27 +70,4 @@ describe("Testes_API",()=>{
 ///Caso de teste 6 - Deletar Movimentação /// 
 
         it("Remover Movimentação", ()=>{ })
-
-})
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
