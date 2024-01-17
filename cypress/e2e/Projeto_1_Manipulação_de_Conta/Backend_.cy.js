@@ -44,7 +44,7 @@ describe("Testes_API",()=>{
                         }
                 }) .then(res=>console.log(res)) .then(res=>
                         cy.request({
-                        url:`https://barrigarest.wcaquino.me/contas/${res,body[0],id}`,
+                        url:`https://barrigarest.wcaquino.me/contas/${res.body[0].id}`, /// aqui na pesquisa são pontos///
                         method:"PUT",
                         headers:{Authorization: `JWT ${token}`},
                         body:{nome:"Conta alterada via rest" },
