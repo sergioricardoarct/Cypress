@@ -65,7 +65,10 @@ Cypress.Commands.add("GetToken", (user, password)=>{
                 redirecionar: false,
                 senha:password,
         }
-    }).its("body.token").should("not.be.empty").then(token =>{return token} )
+    }).its("body.token").should("not.be.empty") .then(token => {
+        Cypress.env('token', token)
+        return token
+    })
 })
 
 Cypress.Commands.add("ResetGet", ()=>{

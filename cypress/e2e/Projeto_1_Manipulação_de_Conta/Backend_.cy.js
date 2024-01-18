@@ -4,10 +4,14 @@ describe("Testes_API",()=>{
         let token
         before(()=>{
                 cy.GetToken('RamisesMenotep@egt.com','Ameno123')
-                .then(tkn => {token = tkn})
+                .then(tkn => {token = tkn})               
+        }
+                
+        )
+        beforeEach(()=>{
+                {cy.ResetGet()}
         })
         
-        beforeEach(()=>{ cy.ResetGet()})
 
         
 /// Caso de teste 1 - Inserir uma conta ///
@@ -27,14 +31,11 @@ describe("Testes_API",()=>{
                         expect(resp.body).to.be.have.property('id')
                         expect(resp.body).to.be.have.property('nome','Conta via Post')
                 })
-        })
-        
-        
-
+        })   
 
 /// Caso de teste 2 - Alterando uma conta ///
 
-        it.only("Alteração de conta", ()=>{
+        it("Alteração de conta", ()=>{
                 cy.request({
                         url:'https://barrigarest.wcaquino.me/contas',
                         method:'GET',
@@ -57,7 +58,34 @@ describe("Testes_API",()=>{
     
 /// Caso de teste 3 - Tentar criar uma conta repetida ///
 
-        it("Repetir conta",()=>{ })         
+        it.only("Repetir conta",()=>{
+                cy.request(
+                        {method:'POST',
+                        url:'https://barrigarest.wcaquino.me/contas',
+                       // headers:{Authorization: `JWT ${token}`},       //// aqui é crase///
+                        body:{nome:'Conta via Post'},
+                        failOnStatusCode: false
+                        })
+
+
+                cy.request({
+                        url: 'https://barrigarest.wcaquino.me/contas/',
+                        method: 'POST',
+                        // headers: { Authorization: `JWT ${token}` },
+                        body: {
+                            nome: 'Conta via Post'
+                        },
+                        failOnStatusCode: false
+                    }).as('response')
+            
+                //     cy.get('@response').then(res => {
+                //         expect(res.status).to.be.equal(400)
+                //         expect(res.body.error).to.be.equal('Já existe uma conta com esse nome!')
+                //     })
+
+                
+               
+        })         
 
 ///Caso de teste 4 - Inserir Movientação ///
 
