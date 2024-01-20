@@ -39,7 +39,7 @@ describe("Testes_API",()=>{
                 cy.request({
                         url:'https://barrigarest.wcaquino.me/contas',
                         method:'GET',
-                        headers:{Authorization: `JWT ${token}`},
+                       // headers:{Authorization: `JWT ${token}`},
                         qs:{
                                 nome:'Conta para alterar',
                         }
@@ -47,7 +47,7 @@ describe("Testes_API",()=>{
                         cy.request({
                         url:`https://barrigarest.wcaquino.me/contas/${res.body[0].id}`, /// aqui na pesquisa são pontos///
                         method:"PUT",
-                        headers:{Authorization: `JWT ${token}`},
+                      //  headers:{Authorization: `JWT ${token}`},
                         body:{nome:"Conta alterada via rest" },
                 })).as("response")
                         
@@ -89,7 +89,10 @@ describe("Testes_API",()=>{
 
 ///Caso de teste 4 - Inserir Movientação ///
 
-        it("Inserir Movientação", ()=>{})
+        it("Inserir Movientação", ()=>{
+                
+
+        })
 
 ///Caso de teste 5 - Saldo da Movientação /// 
 
