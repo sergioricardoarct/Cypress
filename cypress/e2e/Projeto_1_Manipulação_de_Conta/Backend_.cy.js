@@ -96,8 +96,8 @@ describe("Testes_API",()=>{
                                 headers:{Authorization: `JWT ${token}`},
                                 body:{
                                         conta_id:contaId,
-                                        data_pagamento: dayjs().add(1, "day").format('DD/MM/YYYY'), 
-                                        data_transacao: dayjs().format('DD/MM/YYYY'),
+                                        data_pagamento: "21/10/2023",
+                                        data_transacao: "21/10/2023",
                                         descricao: "asdf",
                                         envolvido: "asd",
                                         status: true,
