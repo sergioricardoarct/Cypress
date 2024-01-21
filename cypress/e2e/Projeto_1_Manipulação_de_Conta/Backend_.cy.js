@@ -5,9 +5,8 @@ describe("Testes_API",()=>{
         before(()=>{
                 cy.GetToken('RamisesMenotep@egt.com','Ameno123')
                 .then(tkn => {token = tkn})               
-        }
-                
-        )
+        })
+
         beforeEach(()=>{
                 {cy.ResetGet()}
         })
@@ -39,7 +38,7 @@ describe("Testes_API",()=>{
                 cy.request({
                         url:'https://barrigarest.wcaquino.me/contas',
                         method:'GET',
-                       // headers:{Authorization: `JWT ${token}`},
+                        headers:{Authorization: `JWT ${token}`},
                         qs:{
                                 nome:'Conta para alterar',
                         }
@@ -47,18 +46,18 @@ describe("Testes_API",()=>{
                         cy.request({
                         url:`https://barrigarest.wcaquino.me/contas/${res.body[0].id}`, /// aqui na pesquisa são pontos///
                         method:"PUT",
-                      //  headers:{Authorization: `JWT ${token}`},
+                        headers:{Authorization: `JWT ${token}`},
                         body:{nome:"Conta alterada via rest" },
                 })).as("response")
                         
                 
                 cy.get("@response").its("status").should("be.equal",200 )           
                 })
-         })         
+                  
     
 /// Caso de teste 3 - Tentar criar uma conta repetida ///
 
-        it.only("Repetir conta",()=>{
+        it("Repetir conta",()=>{
                 cy.request(
                         {method:'POST',
                         url:'https://barrigarest.wcaquino.me/contas',
@@ -78,10 +77,9 @@ describe("Testes_API",()=>{
                         failOnStatusCode: false
                     }).as('response')
             
-                //     cy.get('@response').then(res => {
-                //         expect(res.status).to.be.equal(400)
-                //         expect(res.body.error).to.be.equal('Já existe uma conta com esse nome!')
-                //     })
+                    cy.get('@response').then(res => {
+                        expect(res.status).to.be.equal(401)
+                    })
 
                 
                
@@ -89,10 +87,27 @@ describe("Testes_API",()=>{
 
 ///Caso de teste 4 - Inserir Movientação ///
 
-        it("Inserir Movientação", ()=>{
-                
-
+        it.only("Inserir Movientação", ()=>{
+                cy.GetContaNome("Conta para movimentacoes")
+                .then(contaId =>{
+                        cy.request({
+                                url: 'https://barrigarest.wcaquino.me/transacoes',
+                                method: 'POST',
+                                headers:{Authorization: `JWT ${token}`},
+                                body:{
+                                        conta_id:contaId,
+                                        data_pagamento: "21/10/2023",
+                                        data_transacao: "21/10/2023",
+                                        descricao: "asdf",
+                                        envolvido: "asd",
+                                        status: true,
+                                        tipo: "REC",
+                                        valor: "321"}
+                        })
+                }). as("response")
+                cy.get("@response").its("status").should("be.equal",201)
         })
+        
 
 ///Caso de teste 5 - Saldo da Movientação /// 
 
@@ -101,4 +116,4 @@ describe("Testes_API",()=>{
 ///Caso de teste 6 - Deletar Movimentação /// 
 
         it("Remover Movimentação", ()=>{ })
-
+})

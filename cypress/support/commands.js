@@ -82,3 +82,16 @@ headers:{Authorization: `JWT ${token}`},
     })
 
 })
+
+Cypress.Commands.add ("GetContaNome",nome=>{
+    cy.GetToken('RamisesMenotep@egt.com','Ameno123').then(token =>{
+        cy.request({
+            url:'https://barrigarest.wcaquino.me/contas',
+            method:'GET',
+            headers:{Authorization: `JWT ${token}`},
+            qs:{
+                    nome:nome
+            }
+        }).then(res =>{ return res.body[0].id})
+    })
+})
