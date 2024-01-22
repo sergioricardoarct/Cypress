@@ -36,8 +36,8 @@ import loc from './locators'
 Cypress.Commands.add ("login_projeto", (user,password)=>{
     cy.visit('https://barrigareact.wcaquino.me')
 
-        cy.get(loc.LOGIN.USER).type("RamisesMenotep@egt.com")
-        cy.get(loc.LOGIN.PASSWORD).type ("Ameno123")  
+        cy.get(loc.LOGIN.USER).type(user)
+        cy.get(loc.LOGIN.PASSWORD).type (password)  
         cy.get(loc.LOGIN.BTN_LOGIN).click()
 
 })

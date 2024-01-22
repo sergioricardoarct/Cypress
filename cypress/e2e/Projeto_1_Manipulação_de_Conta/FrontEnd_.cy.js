@@ -11,8 +11,16 @@ require ('cypress-xpath')
 
 describe("Testes_Funcionais",()=>{
 
-    beforeEach(()=>{
-       cy.login_projeto ("RamisesMenotep@egt.com" ,"Ameno123")
+    before(()=>{
+        cy.intercept({
+                method: 'POST',
+                path: 'https://barrigarest.wcaquino.me/signin'},
+                { id:1111,
+                nome:'iaiafhds',
+                token:'qualquer coisa'}).as("rotaA")
+
+        
+        cy.login_projeto ("RamisesMenotep@egt.com" ,"Ameno123")
        
     })     
         
