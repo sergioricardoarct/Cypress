@@ -125,7 +125,7 @@ describe("Testes_API",()=>{
 
 ///Caso de teste 6 - Deletar Movimentação /// 
 
-        it.only("Remover Movimentação", ()=>{ 
+        it("Remover Movimentação", ()=>{ 
                 cy.request({
                         url: 'https://barrigarest.wcaquino.me/transacoes',
                         method: 'GET',
