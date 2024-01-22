@@ -11,8 +11,6 @@ describe("Testes_API",()=>{
                 {cy.ResetGet()}
         })
         
-
-        
 /// Caso de teste 1 - Inserir uma conta ///
         it("Criar conta", ()=>{
                 cy.request(
@@ -54,7 +52,6 @@ describe("Testes_API",()=>{
                 cy.get("@response").its("status").should("be.equal",200 )           
                 })
                   
-    
 /// Caso de teste 3 - Tentar criar uma conta repetida ///
 
         it("Repetir conta",()=>{
@@ -87,7 +84,7 @@ describe("Testes_API",()=>{
 
 ///Caso de teste 4 - Inserir Movientação ///
 
-        it.only("Inserir Movientação", ()=>{
+        it("Inserir Movientação", ()=>{
                 cy.GetContaNome("Conta para movimentacoes")
                 .then(contaId =>{
                         cy.request({
@@ -108,12 +105,38 @@ describe("Testes_API",()=>{
                 cy.get("@response").its("status").should("be.equal",201)
         })
         
-
 ///Caso de teste 5 - Saldo da Movientação /// 
 
-        it("Saldo", ()=>{ })
+        it("Saldo", ()=>{
+                cy.request({
+                        url: 'https://barrigarest.wcaquino.me/saldo',
+                        method: 'GET',
+                        headers:{Authorization: `JWT ${token}`},
+                }).then(res=>{
+                        let saldoConta = null
+                        res.body.forEach ( 
+                                c=>{ if(c.conta ==="Conta para saldo")
+                                        saldoConta = c.saldo
+                                })
+                        expect(saldoConta).to.be.equal("534.00")
+                })               
+         })
+
 
 ///Caso de teste 6 - Deletar Movimentação /// 
 
-        it("Remover Movimentação", ()=>{ })
+        it.only("Remover Movimentação", ()=>{ 
+                cy.request({
+                        url: 'https://barrigarest.wcaquino.me/transacoes',
+                        method: 'GET',
+                        headers:{Authorization: `JWT ${token}`},
+                        qs: {descrição:"Movimentacao para exclusao"},
+                }).then(reps=>{
+                                cy.request({
+                                        url:`https://barrigarest.wcaquino.me/transacoes/${reps.body[0].id}`,
+                                        method: 'DELETE',
+                                        headers:{Authorization: `JWT ${token}`},
+                        })
+                }).its ("status").should("be.equal", 204)
+        })
 })
