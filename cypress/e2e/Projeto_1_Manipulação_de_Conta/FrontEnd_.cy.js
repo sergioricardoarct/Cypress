@@ -9,32 +9,88 @@ require ('cypress-xpath')
 
 
 
-describe("Testes_Funcionais",()=>{
+describe("Testes_FrontEnd",()=>{
+       // afterEach(()=>{
+        //     cy.clearlocalStorage()
+        //  })
+        before(()=>{
+                cy.intercept({
+                        method: 'POST',
+                        path: 'https://barrigarest.wcaquino.me/signin'},
+                        { id:1111,
+                        nome:'iaiafhds',
+                        token:'qualquer coisa'}).as("rotaA")
 
-    before(()=>{
-        cy.intercept({
-                method: 'POST',
-                path: 'https://barrigarest.wcaquino.me/signin'},
-                { id:1111,
-                nome:'iaiafhds',
-                token:'qualquer coisa'}).as("rotaA")
-
-        
-        cy.login_projeto ("RamisesMenotep@egt.com" ,"Ameno123")
-       
-    })     
+                
+                cy.login_projeto ("RamisesMenotep@egt.com" ,"Ameno123")
+        })     
         
 /// Login e Usuario Pre cadastrado - Pre condiçoes ///
 
         it.skip("Register", ()=>{cy.registro()})        
-        it("login, valid", ()=>{cy.login_valido()})
+        it.skip("login, valid", ()=>{cy.login_valido()})
 
 
 /// Caso de teste 1 - Inserir uma conta ///
     
-        it("Cricar uma conta", ()=>{
+        it.only("Cricar uma conta", ()=>{
 
-            cy.reset_conta()
+            cy.reset_conta() 
+                cy.intercept({
+                        path:"https://barrigarest.wcaquino.me/contas",
+                        method:"get"},
+                        [
+                                {
+                                    "id": 100100,
+                                    "nome": "Conta para alterar",
+                                    "visivel": true,
+                                    "usuario_id": 46333
+                                },
+                                {
+                                    "id": 2023143,
+                                    "nome": "Conta mesmo nome",
+                                    "visivel": true,
+                                    "usuario_id": 46333
+                                },
+                                {
+                                    "id": 2023144,
+                                    "nome": "Conta para movimentacoes",
+                                    "visivel": true,
+                                    "usuario_id": 46333
+                                },
+                                {
+                                    "id": 2023145,
+                                    "nome": "Conta com movimentacao",
+                                    "visivel": true,
+                                    "usuario_id": 46333
+                                },
+                                {
+                                    "id": 2023146,
+                                    "nome": "Conta para saldo",
+                                    "visivel": true,
+                                    "usuario_id": 46333
+                                },
+                                {
+                                    "id": 2023147,
+                                    "nome": "Conta para extrato",
+                                    "visivel": true,
+                                    "usuario_id": 46333
+                                },
+                                {
+                                    "id": 2023148,
+                                    "nome": "The Construction of Dad's Primanede",
+                                    "visivel": true,
+                                    "usuario_id": 46333
+                                }
+                        ],
+                ).as ("Contas")
+                cy.intercept({
+                        path:"https://barrigarest.wcaquino.me/contas",
+                        method:"POST"},
+                        {"id":2024681,"nome":"asd","visivel":true,"usuario_id":46333}
+
+                ). as("resposta")
+
             cy.acessar_contas()
             cy.add_conta()
 
